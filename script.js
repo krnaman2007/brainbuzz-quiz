@@ -192,6 +192,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let startTime=null
   let timeLeft=15
   let timeInterval
+  let answered=false
 
   function startTimer(currentQuestionIndex,choicesList){
     timeLeft=15
@@ -203,6 +204,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         if(timeLeft<=5) timer.classList.add('danger')
         else timer.classList.remove('danger')
         if(timeLeft===0){
+          answered=true
           userAnswers.push(null)
           clearInterval(timeInterval)
           const correctAnswer=questions[currentQuestionIndex].answer
@@ -248,7 +250,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     quesNumber.textContent=`Question ${currentQuestionIndex+1}/${questions.length}`
     questionScore.textContent=`🎯Marks: ${questions[currentQuestionIndex].score}`
     choicesList.innerHTML="" //clear previous choices
-    let answered=false
+    answered=false
 
     questions[currentQuestionIndex].choices.forEach(choice => {
         const li=document.createElement('li')
